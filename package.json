@@ -1,0 +1,19 @@
+{
+  "name": "bucket-templates",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch src/index.ts",
+    "test-live": "bun test --watch"
+  },
+  "devDependencies": {
+    "bun-types": "latest",
+    "zod": "^3.22.4"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "glob": "^10.3.10"
+  }
+}
