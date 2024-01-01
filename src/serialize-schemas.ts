@@ -1,18 +1,17 @@
 import zodToJsonSchema from "zod-to-json-schema";
-import { SerializedSchemaDefinition } from "./types";
+import { SchemaDefinition, SerializedSchemaDefinition } from "./types";
 import { join } from "path";
 
 import stringHash from "string-hash";
 import loadSchemas from "./schemas";
+import { serializeSchema } from "./helpers";
 
 const encoder = new TextEncoder();
 const schemas = await loadSchemas();
 
-const serialized: SerializedSchemaDefinition[] = schemas.map((elem) => {
-  const defSer = zodToJsonSchema(elem.typeDefinition);
-  const hash = stringHash(JSON.stringify(defSer));
-  return { ...elem, typeDefinition: defSer, hash };
-});
+const serialized = schemas.map((elem: SchemaDefinition) =>
+  serializeSchema(elem)
+);
 
 Promise.all(
   serialized.map((f) => {

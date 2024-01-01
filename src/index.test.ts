@@ -1,6 +1,6 @@
 import { expect, test } from "bun:test";
 import { z } from "zod";
-import { findDuplicate } from "./helpers";
+import { findDuplicate, serializeSchema } from "./helpers";
 import loadSchemas from "./schemas";
 
 const mods = await loadSchemas();
@@ -18,10 +18,16 @@ test("file loading", async () => {
   expect(parsersAreThrowing.every((elem) => !!elem)).toBeTrue();
 });
 
-test("no duplicates", () => {
+test("no duplicates in zod-definitions", () => {
   const { dups: refDups } = findDuplicate(mods.map((elem) => elem.ref));
   expect(refDups.length).toEqual(0);
 
   const { dups: titleDups } = findDuplicate(mods.map((elem) => elem.title));
   expect(titleDups.length).toEqual(0);
+});
+
+test("no duplicates in build result", () => {
+  const serialized = mods.map((elem) => serializeSchema(elem));
+  const { dups: hashDups } = findDuplicate(serialized.map((elem) => elem.hash));
+  expect(hashDups.length).toEqual(0);
 });
