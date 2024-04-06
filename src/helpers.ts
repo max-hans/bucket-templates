@@ -28,5 +28,5 @@ export const serializeSchema = (
 ): SerializedSchemaDefinition => {
   const defSer = zodToJsonSchema(elem.typeDefinition);
   const hash = stringHash(JSON.stringify(defSer));
-  return { ...elem, typeDefinition: defSer, hash };
+  return { ...elem, typeDefinition: defSer, id: hash };
 };

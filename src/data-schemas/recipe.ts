@@ -2,7 +2,6 @@ import { z } from "zod";
 import { SchemaDefinition } from "../types";
 
 const recipe: SchemaDefinition = {
-  ref: 1,
   title: "recipe",
   description:
     "A schema to save recipes including the ingredients and individual steps",

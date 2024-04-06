@@ -2,7 +2,6 @@ import { z } from "zod";
 import { SchemaDefinition } from "../types";
 
 const used_article: SchemaDefinition = {
-  ref: 2,
   title: "used_article",
   description:
     "A schema to save product offerings from pages like Craigslist or eBay",

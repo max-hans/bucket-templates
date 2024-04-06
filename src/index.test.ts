@@ -19,7 +19,7 @@ test("file loading", async () => {
 });
 
 test("no duplicates in zod-definitions", () => {
-  const { dups: refDups } = findDuplicate(mods.map((elem) => elem.ref));
+  const { dups: refDups } = findDuplicate(mods.map((elem) => elem.title));
   expect(refDups.length).toEqual(0);
 
   const { dups: titleDups } = findDuplicate(mods.map((elem) => elem.title));
@@ -28,6 +28,7 @@ test("no duplicates in zod-definitions", () => {
 
 test("no duplicates in build result", () => {
   const serialized = mods.map((elem) => serializeSchema(elem));
-  const { dups: hashDups } = findDuplicate(serialized.map((elem) => elem.hash));
+  console.log(serialized);
+  const { dups: hashDups } = findDuplicate(serialized.map((elem) => elem.id));
   expect(hashDups.length).toEqual(0);
 });

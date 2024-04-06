@@ -2,7 +2,6 @@ import { z } from "zod";
 import { SchemaDefinition } from "../types";
 
 const car: SchemaDefinition = {
-  ref: 3,
   title: "car",
   description: "A schema to save car models",
   typeDefinition: z.object({
