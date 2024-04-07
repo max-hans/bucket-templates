@@ -2,8 +2,8 @@ import { z } from "zod";
 import { SchemaDefinition } from "../types";
 import { definitionBase } from "../zod-schemas";
 
-const car: SchemaDefinition = {
-  title: "car",
+const bicycle: SchemaDefinition = {
+  title: "bicycle",
   description: "A schema to save bicycles",
   typeDefinition: definitionBase.extend({
     brand: z.string().describe("the manufacturer"),
@@ -21,6 +21,6 @@ const car: SchemaDefinition = {
   }),
 };
 
-export type TypeDefinition = z.infer<typeof car.typeDefinition>;
+export type TypeDefinition = z.infer<typeof bicycle.typeDefinition>;
 
-export default car;
+export default bicycle;
