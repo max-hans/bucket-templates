@@ -22,8 +22,6 @@ const recipe: SchemaDefinition = {
   }),
 };
 
-console.log(recipe.typeDefinition.shape);
-
 export type TypeDefinition = z.infer<typeof recipe.typeDefinition>;
 
 export default recipe;

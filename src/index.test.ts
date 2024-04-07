@@ -28,7 +28,6 @@ test("no duplicates in zod-definitions", () => {
 
 test("no duplicates in build result", () => {
   const serialized = mods.map((elem) => serializeSchema(elem));
-  console.log(serialized);
   const { dups: hashDups } = findDuplicate(serialized.map((elem) => elem.id));
   expect(hashDups.length).toEqual(0);
 });

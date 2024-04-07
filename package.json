@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "test-live": "bun test --watch",
-    "export": "bun test && bun run ./src/serialize-schemas.ts",
+    "export": "bun test && bun run ./src/export.ts",
     "doc": "bun run ./src/create-readme.ts",
     "deploy": "bun test && bun run ./src/deploy.ts"
   },
