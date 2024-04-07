@@ -1,15 +1,12 @@
 import { z } from "zod";
 import { SchemaDefinition } from "../types";
+import { definitionBase } from "../zod-schemas";
 
 const used_article: SchemaDefinition = {
   title: "used_article",
   description:
     "A schema to save product offerings from pages like Craigslist or eBay",
-  typeDefinition: z.object({
-    title: z.string().describe("the name of the product"),
-    description: z
-      .string()
-      .describe("a description, just use the one from the original text"),
+  typeDefinition: definitionBase.extend({
     keywords: z
       .array(z.string())
       .describe(

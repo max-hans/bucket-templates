@@ -1,13 +1,12 @@
 import { z } from "zod";
 import { SchemaDefinition } from "../types";
+import { definitionBase } from "../zod-schemas";
 
 const researchPaper: SchemaDefinition = {
   title: "research paper",
   description:
     "A schema to save research paper, a short abstract and the authors",
-  typeDefinition: z.object({
-    title: z.string().describe("the title of the paper"),
-    subTitle: z.string().describe("the sub-title of the paper"),
+  typeDefinition: definitionBase.extend({
     abstract: z
       .string()
       .describe(

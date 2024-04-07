@@ -1,10 +1,11 @@
 import { z } from "zod";
 import { SchemaDefinition } from "../types";
+import { definitionBase } from "../zod-schemas";
 
 const car: SchemaDefinition = {
   title: "car",
   description: "A schema to save car models",
-  typeDefinition: z.object({
+  typeDefinition: definitionBase.extend({
     brand: z.string().describe("the manufacturer"),
     model: z.string().describe("the model name of the car"),
     engine: z.object({

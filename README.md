@@ -7,7 +7,7 @@ This repo contains all the schemas used in the bucket application which restruct
 ## Available templates
 
 
-### used_article [3391288207]
+### used_article [207022556]
 
 A schema to save product offerings from pages like Craigslist or eBay
 
@@ -22,11 +22,15 @@ A schema to save product offerings from pages like Craigslist or eBay
   "properties": {
     "title": {
       "type": "string",
-      "description": "the name of the product"
+      "minLength": 5,
+      "maxLength": 50,
+      "description": "a title for the page"
     },
     "description": {
       "type": "string",
-      "description": "a description, just use the one from the original text"
+      "minLength": 100,
+      "maxLength": 300,
+      "description": "a short abstract summary of the whole text provided."
     },
     "keywords": {
       "type": "array",
@@ -64,7 +68,7 @@ A schema to save product offerings from pages like Craigslist or eBay
 </details>
 
 
-### car [3160535389]
+### car [2979327469]
 
 A schema to save car models
 
@@ -77,6 +81,18 @@ A schema to save car models
 {
   "type": "object",
   "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 50,
+      "description": "a title for the page"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 100,
+      "maxLength": 300,
+      "description": "a short abstract summary of the whole text provided."
+    },
     "brand": {
       "type": "string",
       "description": "the manufacturer"
@@ -133,6 +149,8 @@ A schema to save car models
     }
   },
   "required": [
+    "title",
+    "description",
     "brand",
     "model",
     "engine",
@@ -147,7 +165,7 @@ A schema to save car models
 </details>
 
 
-### recipe [3287171870]
+### recipe [2156273812]
 
 A schema to save recipes including the ingredients and individual steps
 
@@ -162,18 +180,26 @@ A schema to save recipes including the ingredients and individual steps
   "properties": {
     "title": {
       "type": "string",
-      "description": "the title of the recipe"
+      "minLength": 5,
+      "maxLength": 50,
+      "description": "a title for the page"
     },
     "description": {
       "type": "string",
-      "description": "a description, just use the one from the original text"
+      "minLength": 100,
+      "maxLength": 300,
+      "description": "a short abstract summary of the whole text provided."
+    },
+    "portions": {
+      "type": "number",
+      "description": "the amount of portions that this recipe is calculated for"
     },
     "keywords": {
       "type": "array",
       "items": {
         "type": "string"
       },
-      "description": "a list of max 10 keywords like 'vegan', 'beef', 'vegetarian', 'summer' that could be helpful when searching. extract them from the recipe"
+      "description": "a list of max 10 keywords like 'vegan', 'beef', 'vegetarian', 'summer dish' that could be helpful when searching. extract them from the recipe or make up your own based on the dish. make them all lower-case"
     },
     "ingredients": {
       "type": "array",
@@ -192,7 +218,8 @@ A schema to save recipes including the ingredients and individual steps
           "quantity"
         ],
         "additionalProperties": false
-      }
+      },
+      "description": "all the ingredients needed for the recipe"
     },
     "steps": {
       "type": "array",
@@ -204,6 +231,7 @@ A schema to save recipes including the ingredients and individual steps
   "required": [
     "title",
     "description",
+    "portions",
     "keywords",
     "ingredients",
     "steps"
@@ -216,7 +244,7 @@ A schema to save recipes including the ingredients and individual steps
 </details>
 
 
-### research paper [2898017198]
+### research paper [4223598743]
 
 A schema to save research paper, a short abstract and the authors
 
@@ -231,11 +259,15 @@ A schema to save research paper, a short abstract and the authors
   "properties": {
     "title": {
       "type": "string",
-      "description": "the title of the paper"
+      "minLength": 5,
+      "maxLength": 50,
+      "description": "a title for the page"
     },
-    "subTitle": {
+    "description": {
       "type": "string",
-      "description": "the sub-title of the paper"
+      "minLength": 100,
+      "maxLength": 300,
+      "description": "a short abstract summary of the whole text provided."
     },
     "abstract": {
       "type": "string",
@@ -271,10 +303,168 @@ A schema to save research paper, a short abstract and the authors
   },
   "required": [
     "title",
-    "subTitle",
+    "description",
     "abstract",
     "keywords",
     "authors"
+  ],
+  "additionalProperties": false,
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
+```
+
+</details>
+
+
+### contact [1226662651]
+
+A schema to save contact information like adresses etc
+
+<details>
+<summary>Open</summary>
+
+### json definition
+
+```json
+{
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 50,
+      "description": "a title for the page"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 100,
+      "maxLength": 300,
+      "description": "a short abstract summary of the whole text provided."
+    },
+    "email": {
+      "type": "string",
+      "format": "email",
+      "minLength": 3,
+      "maxLength": 50
+    },
+    "mainAdress": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string"
+        },
+        "houseNumber": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "number"
+        },
+        "country": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "street",
+        "houseNumber",
+        "postalCode",
+        "country"
+      ],
+      "additionalProperties": false
+    },
+    "additionalAdress": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string"
+        },
+        "houseNumber": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "number"
+        },
+        "country": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "street",
+        "houseNumber",
+        "postalCode",
+        "country"
+      ],
+      "additionalProperties": false
+    },
+    "phone": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "countryCode": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 3,
+            "description": "the country code of the number without leading '+' or leading zeros. usually just two digits. for germany it is '49' for example"
+          },
+          "cityCode": {
+            "type": "number",
+            "description": "the city code. for stuttgart, germany it is '0711' INCLUDING leading zeros."
+          }
+        },
+        "required": [
+          "countryCode",
+          "cityCode"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "fax": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "countryCode": {
+            "type": "number",
+            "minimum": 1,
+            "maximum": 3,
+            "description": "the country code of the number without leading '+' or leading zeros. usually just two digits. for germany it is '49' for example"
+          }
+        },
+        "required": [
+          "countryCode"
+        ],
+        "additionalProperties": false
+      },
+      "description": "the fax number – if it exists"
+    },
+    "company": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "position": {
+          "type": "string",
+          "description": "the persons position. could be something like 'Managing Director' or 'Team Lead'"
+        },
+        "department": {
+          "type": "string",
+          "description": "the department the person works at. could for example be 'development power tools' or something like that."
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "description": "the company the person works at and details about that. leave empty if there is no information about that provided"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "email",
+    "mainAdress",
+    "phone"
   ],
   "additionalProperties": false,
   "$schema": "http://json-schema.org/draft-07/schema#"
