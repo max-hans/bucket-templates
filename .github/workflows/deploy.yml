@@ -22,5 +22,5 @@ jobs:
         run: bun run deploy
         env:
           OUTPUT_FOLDER: ${{ vars.OUTPUT_FOLDER }}
-          SUPABASE_URL: ${{ vars.SUPABASE_URL }}
-          SUPABASE_SERVICE_KEY: ${{ vars.SUPABASE_SERVICE_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
